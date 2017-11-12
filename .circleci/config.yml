@@ -1,33 +1,34 @@
 version: 2
 jobs:
   build:
-    machine: true
     working_directory: ~/drone-frontend
     docker:
       - image: circleci/node:8.9.1
     steps:
       - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: install-npm-modules
+          name: Install NPM modules
           command: npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:
-          name: test
+          name: Test application
           command: npm test
       - run:
-          name: build
+          name: Build production application
           command: npm run build
       - run:
-          name: create docker image
-          command: docker build -t nicholasjackson/drone-frontend:latest
+          name: Create Docker image
+          command: docker build -t nicholasjackson/drone-frontend:latest .
       - run:
-          name: login to docker
+          name: Login to Docker
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run:
-          name: push docker image
-          command: - docker push nicholasjackson/drone-frontend:latest
+          name: Push Docker image
+          command: docker push nicholasjackson/drone-frontend:latest
