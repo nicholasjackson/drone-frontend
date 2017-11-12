@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AppBar from './AppBar.js';
-import Grid from './Grid.js';
+import Controls from './Controls.js';
 
 class App extends Component {
   render() {
@@ -8,7 +8,7 @@ class App extends Component {
       <div className="App">
         <AppBar></AppBar>
         <div>
-          <Grid></Grid>
+          <Controls></Controls>
         </div>
       </div>
     );
