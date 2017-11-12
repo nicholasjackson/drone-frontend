@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/nicholasjackson/drone-control.svg?style=svg)](https://circleci.com/gh/nicholasjackson/drone-control)
+[![CircleCI](https://circleci.com/gh/nicholasjackson/drone-frontend.svg?style=svg)](https://circleci.com/gh/nicholasjackson/drone-frontend)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
