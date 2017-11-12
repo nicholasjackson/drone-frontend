@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    machine: true
     working_directory: ~/drone-frontend
     docker:
       - image: circleci/node:8.9.1
@@ -21,3 +22,12 @@ jobs:
       - run:
           name: build
           command: npm run build
+      - run:
+          name: create docker image
+          command: docker build -t nicholasjackson/drone-frontend:latest
+      - run:
+          name: login to docker
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run:
+          name: push docker image
+          command: - docker push nicholasjackson/drone-frontend:latest
